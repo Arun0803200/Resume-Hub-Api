@@ -1,0 +1,3 @@
+# In Sql And PGsql
+1.) Can create data type
+    eg. `create type user_role as enum('Admin','User');` -> Directly can mention in columns
