@@ -1,38 +1,37 @@
 import { Service } from "typedi";
 import {OrmRepository} from 'typeorm-typedi-extensions';
-import { SeatRepository } from "../repositories/SeatRepository";
-import { Seat } from "../models/SeatModel";
+import { MasterResumeRepository } from "../repositories/MasterResumeRepository";
+import { MasterResumeModel } from "../models/MasterResumeModel";
 import { Like } from "typeorm";
-import { off } from "process";
 @Service()
-export class SeatService {
+export class MasterResumeService {
     constructor(
-        @OrmRepository() private seatRepository: SeatRepository
+        @OrmRepository() private masterResumeRepository: MasterResumeRepository
     ) {}
 
-    // Create Seat
-    public async create(seatData: any): Promise<any> {
-        return await this.seatRepository.save(seatData);
+    // Create MasterResume
+    public async create(MasterResumeData: any): Promise<any> {
+        return await this.masterResumeRepository.save(MasterResumeData);
     }
 
-    // Update Seat
-    public async update(id: number, seatData: Seat)  {
-        seatData.seatId = id;
-        return await this.seatRepository.save(seatData);
+    // Update MasterResume
+    public async update(id: number, MasterResumeData: MasterResumeModel)  {
+        MasterResumeData.id = id;
+        return await this.masterResumeRepository.save(MasterResumeData);
     }
 
 
-    // Find One The Seat
-    public async findOne(seatData: any): Promise<any> {
-        return await this.seatRepository.findOne(seatData);
+    // Find One The MasterResume
+    public async findOne(MasterResumeData: any): Promise<any> {
+        return await this.masterResumeRepository.findOne(MasterResumeData);
     }
 
-    // Find All The Seat
+    // Find All The MasterResume
     public async findAll(): Promise<any> {
-        return await this.seatRepository.find();
+        return await this.masterResumeRepository.find();
     }
 
-    // List The Seat
+    // List The MasterResume
     public async list(limit: number, offset: number, search: any = [], select: any = [], whereConditions: any = [], relation: any = [], count: number | boolean): Promise<any> {
         const condition: any = {};
 
@@ -72,14 +71,14 @@ export class SeatService {
         }
 
         if (count) {
-            return await this.seatRepository.count(condition);
+            return await this.masterResumeRepository.count(condition);
         } else {
-            return await this.seatRepository.find(condition);
+            return await this.masterResumeRepository.find(condition);
         }
     }
 
-    // Delete Seat
+    // Delete MasterResume
     public async delete(id: number): Promise<any> {
-        return await this.seatRepository.delete(id);
+        return await this.masterResumeRepository.delete(id);
     }
 }

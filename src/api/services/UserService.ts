@@ -1,9 +1,8 @@
 import { Service } from "typedi";
 import {OrmRepository} from 'typeorm-typedi-extensions';
 import { UserRepository } from "../repositories/UserRepository";
-import { User } from "../models/User";
 import { Like } from "typeorm";
-import { off } from "process";
+import { UserModel } from "../models/UserModel";
 @Service()
 export class UserService {
     constructor(
@@ -16,7 +15,7 @@ export class UserService {
     }
 
     // Update User
-    public async update(id: number, userData: User)  {
+    public async update(id: number, userData: UserModel)  {
         userData.id = id;
         return await this.userRepository.save(userData);
     }
