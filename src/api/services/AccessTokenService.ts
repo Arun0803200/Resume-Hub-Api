@@ -1,38 +1,37 @@
 import { Service } from "typedi";
 import {OrmRepository} from 'typeorm-typedi-extensions';
-import { FounderRepository } from "../repositories/FounderRepository";
-import { Founder } from "../models/Founder";
+import { AccessTokenRepository } from "../repositories/AccessTokenRepository";
+import { AccessTokenModel } from "../models/AccessTokenModel";
 import { Like } from "typeorm";
-import { off } from "process";
 @Service()
-export class FounderService {
+export class AccessTokenService {
     constructor(
-        @OrmRepository() private founderRepository: FounderRepository
+        @OrmRepository() private accessTokenRepository: AccessTokenRepository
     ) {}
 
-    // Create Founder
-    public async create(FounderData: any): Promise<any> {
-        return await this.founderRepository.save(FounderData);
+    // Create AccessToken
+    public async create(AccessTokenData: any): Promise<any> {
+        return await this.accessTokenRepository.save(AccessTokenData);
     }
 
-    // Update Founder
-    public async update(id: number, FounderData: Founder)  {
-        FounderData.founderId = id;
-        return await this.founderRepository.save(FounderData);
+    // Update AccessToken
+    public async update(id: number, AccessTokenData: AccessTokenModel)  {
+        AccessTokenData.id = id;
+        return await this.accessTokenRepository.save(AccessTokenData);
     }
 
 
-    // Find One The Founder
-    public async findOne(FounderData: any): Promise<any> {
-        return await this.founderRepository.findOne(FounderData);
+    // Find One The AccessToken
+    public async findOne(AccessTokenData: any): Promise<any> {
+        return await this.accessTokenRepository.findOne(AccessTokenData);
     }
 
-    // Find All The Founder
+    // Find All The AccessToken
     public async findAll(): Promise<any> {
-        return await this.founderRepository.find();
+        return await this.accessTokenRepository.find();
     }
 
-    // List The Founder
+    // List The AccessToken
     public async list(limit: number, offset: number, search: any = [], select: any = [], whereConditions: any = [], relation: any = [], count: number | boolean): Promise<any> {
         const condition: any = {};
 
@@ -72,14 +71,14 @@ export class FounderService {
         }
 
         if (count) {
-            return await this.founderRepository.count(condition);
+            return await this.accessTokenRepository.count(condition);
         } else {
-            return await this.founderRepository.find(condition);
+            return await this.accessTokenRepository.find(condition);
         }
     }
 
-    // Delete Founder
+    // Delete AccessToken
     public async delete(id: number): Promise<any> {
-        return await this.founderRepository.delete(id);
+        return await this.accessTokenRepository.delete(id);
     }
 }

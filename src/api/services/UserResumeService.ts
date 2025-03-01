@@ -1,45 +1,50 @@
 import { Service } from "typedi";
 import {OrmRepository} from 'typeorm-typedi-extensions';
-import { TokenRepository } from "../repositories/TokenRepository";
-import { Token } from "../models/Token";
+import { UserResumeRepository } from "../repositories/UserResumeRepository";
 import { Like } from "typeorm";
-import { off } from "process";
+import { UserResumeModel } from "../models/UserResumeModel";
 @Service()
-export class TokenService {
+export class UserService {
     constructor(
-        @OrmRepository() private tokenRepository: TokenRepository
+        @OrmRepository() private userResumeRepository: UserResumeRepository
     ) {}
 
-    // Create User
-    public async create(data: any): Promise<any> {
-        return await this.tokenRepository.save(data);
+    // Create UserResume
+    public async create(userData: any): Promise<any> {
+        return await this.userResumeRepository.save(userData);
     }
 
-    // Update User
-    public async update(id: number, data: Token)  {
-        data.id = id;
-        return await this.tokenRepository.save(data);
+    // Update UserResume
+    public async update(id: number, userData: UserResumeModel)  {
+        userData.id = id;
+        return await this.userResumeRepository.save(userData);
     }
 
 
-    // Find One The User
-    public async findOne(data: any): Promise<any> {
-        return await this.tokenRepository.findOne(data);
+    // Find One The UserResume
+    public async findOne(userData: any): Promise<any> {
+        return await this.userResumeRepository.findOne(userData);
     }
 
-    // Find All The User
+    public async find(data: any): Promise<any> {
+        return await this.userResumeRepository.find(data)
+    }
+
+    // Find All The UserResume
     public async findAll(): Promise<any> {
-        return await this.tokenRepository.find();
+        return await this.userResumeRepository.find();
     }
 
-    // List The User
+    // List The UserResume
     public async list(limit: number, offset: number, search: any = [], select: any = [], whereConditions: any = [], relation: any = [], count: number | boolean): Promise<any> {
         const condition: any = {};
 
         if (select && select.length > 0) {
             condition.select = select;
         }
-
+        condition.order = {
+            createdDate: 'DESC'
+        }
         if (whereConditions && whereConditions.length > 0) {
             whereConditions.forEach((data) => {
                 if (data.value!=='') {
@@ -70,14 +75,14 @@ export class TokenService {
         }
 
         if (count) {
-            return await this.tokenRepository.count(condition);
+            return await this.userResumeRepository.count(condition);
         } else {
-            return await this.tokenRepository.find(condition);
+            return await this.userResumeRepository.find(condition);
         }
     }
 
-    // Delete User
+    // Delete UserResume
     public async delete(id: number): Promise<any> {
-        return await this.tokenRepository.delete(id);
+        return await this.userResumeRepository.delete(id);
     }
 }

@@ -1,41 +1,37 @@
 import { Service } from "typedi";
 import {OrmRepository} from 'typeorm-typedi-extensions';
-import { BookingRepository } from "../repositories/BookingRepository";
-import { Booking } from "../models/BookingModel";
+import { AdminRepository } from "../repositories/AdminRepository";
+import { AdminModel } from "../models/AdminModel";
 import { Like } from "typeorm";
-import { off } from "process";
 @Service()
-export class BookingService {
+export class AdminService {
     constructor(
-        @OrmRepository() private bookingRepository: BookingRepository
+        @OrmRepository() private adminRepository: AdminRepository
     ) {}
 
-    // Create Booking
-    public async create(BookingData: any): Promise<any> {
-        return await this.bookingRepository.save(BookingData);
+    // Create Admin
+    public async create(AdminData: any): Promise<any> {
+        return await this.adminRepository.save(AdminData);
     }
 
-    // Update Booking
-    public async update(id: number, BookingData: Booking)  {
-        BookingData.bookingId = id;
-        return await this.bookingRepository.save(BookingData);
+    // Update Admin
+    public async update(id: number, AdminData: AdminModel)  {
+        AdminData.id = id;
+        return await this.adminRepository.save(AdminData);
     }
 
 
-    // Find One The Booking
-    public async findOne(BookingData: any): Promise<any> {
-        return await this.bookingRepository.findOne(BookingData);
+    // Find One The Admin
+    public async findOne(AdminData: any): Promise<any> {
+        return await this.adminRepository.findOne(AdminData);
     }
 
-    // Find All The Booking
+    // Find All The Admin
     public async findAll(): Promise<any> {
-        return await this.bookingRepository.find();
+        return await this.adminRepository.find();
     }
 
-    public async find(data: any): Promise<any> {
-        return await this.bookingRepository.find(data);
-    }
-    // List The Booking
+    // List The Admin
     public async list(limit: number, offset: number, search: any = [], select: any = [], whereConditions: any = [], relation: any = [], count: number | boolean): Promise<any> {
         const condition: any = {};
 
@@ -75,14 +71,14 @@ export class BookingService {
         }
 
         if (count) {
-            return await this.bookingRepository.count(condition);
+            return await this.adminRepository.count(condition);
         } else {
-            return await this.bookingRepository.find(condition);
+            return await this.adminRepository.find(condition);
         }
     }
 
-    // Delete Booking
+    // Delete Admin
     public async delete(id: number): Promise<any> {
-        return await this.bookingRepository.delete(id);
+        return await this.adminRepository.delete(id);
     }
 }
