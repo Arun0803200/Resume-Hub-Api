@@ -11,11 +11,8 @@ function controllerIndex() {
         fs.mkdirSync(dirPath);
     }
     const fileName = path.join(src, 'api', '**', '**', '*Controller.ts')
-    console.log(fileName, 'fileNamefileName');
-    
     const replacePath = fileName.split('\\')
     const orgPath = replacePath.join('/');
-    console.log(orgPath, 'orgPathorgPath');
     for (const files of fg.sync(orgPath)) {
         const splitPath = files.split('.');
         const relativePath =  path.relative(path.join(src, 'common'), splitPath[0]);

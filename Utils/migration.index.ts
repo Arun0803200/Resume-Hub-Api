@@ -3,8 +3,6 @@ import * as path from 'path';
 import * as fs from 'fs';
 
 function migrationIndex() {
-    console.log('yesssssssssssss');
-    
     const dirName = path.dirname(__dirname);
     const src = path.join(dirName, 'src');
     const dirPath: any = path.join(src, 'common', 'index.migration.ts');
@@ -12,14 +10,9 @@ function migrationIndex() {
     if (!fs.existsSync(dirPath)) {
         fs.mkdirSync(dirPath);
     }
-    const fileName = path.join(src, 'api', 'database', '**', '1678626333454-CreateUser.ts');
-    console.log(fileName, 'dilename');
-    const replacePath = fileName.split('\\');
-    console.log(replacePath, 'replacePath');
-    
-    const orgPath = replacePath.join('/');
-    console.log(orgPath, 'orgPath', fg.sync(orgPath));
-    
+    const fileName = path.join(src, 'database', '**', '*.ts');
+    const replacePath = fileName.split('\\');    
+    const orgPath = replacePath.join('/');    
     for (const files of fg.sync(orgPath)) {
         const splitPath = files.split('.');
         const relativePath =  path.relative(path.join(src, 'common'), splitPath[0]);

@@ -11,48 +11,48 @@ export class CreateUserResumeTbl1740708902609 implements MigrationInterface {
                     columns: [
                         {
                             name: 'id',
-                            type: 'INT',
+                            type: 'integer',
                             isPrimary: true,
                             isGenerated: true,
                             generationStrategy: 'increment',
                         },
                         {
                             name: 'resume_id',
-                            type: 'INT',
+                            type: 'integer',
                             isNullable: false,
                         },
                         {
                             name: 'created_date',
-                            type: 'TIMESTAMP',
-                            default: 'CURRENT_TIMESTAMP',
+                            type: 'timestamp',
+                            default: 'current_timestamp',
                             isNullable: true,
                         },
                         {
                             name: 'created_by',
-                            type: 'INT',
+                            type: 'integer',
                             isNullable: true,
                         },
                         {
                             name: 'created_role',
-                            type: 'ENUM',
-                            enum: ['User', 'Admin'],
+                            type: 'enum',
+                            enumName: 'user_role', // Reuse the existing enum type
                             isNullable: true,
                         },
                         {
                             name: 'modified_date',
-                            type: 'TIMESTAMP',
-                            default: 'CURRENT_TIMESTAMP',
+                            type: 'timestamp',
+                            default: 'current_timestamp',
                             isNullable: true,
                         },
                         {
                             name: 'modified_by',
-                            type: 'INT',
+                            type: 'integer',
                             isNullable: true,
                         },
                         {
                             name: 'modified_role',
-                            type: 'ENUM',
-                            enum: ['User', 'Admin'],
+                            type: 'enum',
+                            enumName: 'user_role', // Reuse the existing enum type
                             isNullable: true,
                         },
                     ],

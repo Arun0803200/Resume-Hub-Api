@@ -3,6 +3,16 @@ import { BaseModel } from "./BaseModel";
 import moment = require("moment");
 import bcrypt = require('bcrypt');
 
+export interface AdminData {
+    firstName: string,
+    lastName: string,
+    address: string,
+    city: string,
+    state: string,
+    country: string,
+    isDelete: number,
+    isActive: number
+}
 
 @Entity('tbl_admin')
 export class AdminModel extends BaseModel {
@@ -38,10 +48,10 @@ export class AdminModel extends BaseModel {
     public password: string;
 
     @Column({name: 'mobile_number', type: 'varchar', length: 15})
-    public mobileNumber: number;
+    public mobileNumber: string;
 
     @Column({name: 'admin_data', type: 'jsonb'})
-    public adminData: JSON;
+    public adminData: AdminData;
 
     @BeforeInsert()
         public async createdData(): Promise<any> {

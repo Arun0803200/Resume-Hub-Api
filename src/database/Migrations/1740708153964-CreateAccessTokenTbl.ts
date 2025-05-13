@@ -10,31 +10,31 @@ export class CreateAccessTokenTbl1740708153964 implements MigrationInterface {
                 columns: [
                     {
                         name: 'id',
-                        type: 'INT',
+                        type: 'int',
                         isPrimary: true,
                         isGenerated: true,
                         generationStrategy: 'increment',
                     },
                     {
                         name: 'token',
-                        type: 'TEXT',
+                        type: 'text',
                         isNullable: false,
                     },
                     {
                         name: 'created_date',
-                        type: 'TIMESTAMP',
-                        default: 'CURRENT_TIMESTAMP',
+                        type: 'timestamp',
+                        default: 'current_timestamp',
                         isNullable: true,
                     },
                     {
                         name: 'created_by',
-                        type: 'INT',
+                        type: 'int',
                         isNullable: true,
                     },
                     {
                         name: 'created_role',
-                        type: 'ENUM',
-                        enum: ['User', 'Admin'],
+                        type: 'enum',
+                        enumName: 'user_role', // Reuse the existing enum type
                         isNullable: true,
                     },
                 ],

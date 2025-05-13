@@ -1,17 +1,16 @@
 import { MicroframeworkSettings, MicroframeworkLoader } from "microframework";
-import { Token } from "../api/models/Token";
 import { getConnectionOptions, createConnection } from "typeorm";
-import * as Migration from "../../src/api/common-index/Migration";
-import * as models from "../../src/api/common-index/Mode-index";
+import * as Migration from "../../src/common/index.migration";
+import * as models from "../../src/common/index.model";
 export const typeormLoader: MicroframeworkLoader = async (settings: MicroframeworkSettings) => {  
     const loaderOption: any = await getConnectionOptions();    
     const connectionOptions: any = Object.assign(loaderOption, {
-        type: 'mysql',
+        type: 'postgres',
         host: 'localhost',
-        port: 3306,
-        username: 'root',
-        database: 'arundhika',
-        password: '',
+        port: 5432,
+        username: 'postgres',
+        database: 'db_resume_hub',
+        password: 'Welcome123$',
         synchronize: false,
         logging: true,
         entities: Object.values(models),

@@ -10,48 +10,48 @@ export class CreateMasterResumeTbl1740708436992 implements MigrationInterface {
                 columns: [
                     {
                         name: 'id',
-                        type: 'INT',
+                        type: 'int',
                         isPrimary: true,
                         isGenerated: true,
                         generationStrategy: 'increment',
                     },
                     {
                         name: 'resume_data',
-                        type: 'JSONB',
+                        type: 'jsonb',
                         isNullable: true,
                     },
                     {
                         name: 'created_date',
-                        type: 'TIMESTAMP',
-                        default: 'CURRENT_TIMESTAMP',
+                        type: 'timestamp',
+                        default: 'current_timestamp',
                         isNullable: true,
                     },
                     {
                         name: 'created_by',
-                        type: 'INT',
+                        type: 'int',
                         isNullable: true,
                     },
                     {
                         name: 'created_role',
-                        type: 'ENUM',
-                        enum: ['User', 'Admin'],
+                        type: 'enum',
+                        enumName: 'user_role', // Reuse the existing enum type
                         isNullable: true,
                     },
                     {
                         name: 'modified_date',
-                        type: 'TIMESTAMP',
-                        default: 'CURRENT_TIMESTAMP',
+                        type: 'timestamp',
+                        default: 'current_timestamp',
                         isNullable: true,
                     },
                     {
                         name: 'modified_by',
-                        type: 'INT',
+                        type: 'int',
                         isNullable: true,
                     },
                     {
                         name: 'modified_role',
-                        type: 'ENUM',
-                        enum: ['User', 'Admin'],
+                        type: 'enum',
+                        enumName: 'user_role', // Reuse the existing enum type
                         isNullable: true,
                     },
                 ],

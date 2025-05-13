@@ -10,7 +10,7 @@ export class CreateAdminTable1740704164076 implements MigrationInterface {
                 columns: [
                     {
                         name: 'id',
-                        type: 'INT',
+                        type: 'integer',
                         isPrimary: true,
                         isNullable: false,
                         isGenerated: true,
@@ -48,27 +48,27 @@ export class CreateAdminTable1740704164076 implements MigrationInterface {
                     },
                     {
                         name: 'created_date',
-                        type: 'DATETIME',
+                        type: 'timestamp',
                         default: 'CURRENT_TIMESTAMP',
                         isPrimary: false,
                         isNullable: true,
                     },
                     {
                         name: 'created_by',
-                        type: 'INT',
+                        type: 'integer',
                         isPrimary: false,
                         isNullable: true,
                     },
                     {
                         name: 'modified_date',
-                        type: 'DATETIME',
+                        type: 'timestamp',
                         default: 'CURRENT_TIMESTAMP',
                         isPrimary: false,
                         isNullable: true,
                     },
                     {
                         name: 'modified_by',
-                        type: 'INT',
+                        type: 'integer',
                         isPrimary: false,
                         isNullable: true,
                     },

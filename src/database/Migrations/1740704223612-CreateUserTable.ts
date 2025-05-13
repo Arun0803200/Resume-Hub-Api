@@ -10,75 +10,76 @@ export class CreateUserTable1740704223612 implements MigrationInterface {
                 columns: [
                     {
                         name: 'id',
-                        type: 'INT',
+                        type: 'integer',
                         isPrimary: true,
                         isGenerated: true,
                         generationStrategy: 'increment',
                     },
                     {
                         name: 'email',
-                        type: 'VARCHAR',
+                        type: 'varchar',
                         length: '50',
                         isUnique: true,
                     },
                     {
                         name: 'mobile_number',
-                        type: 'VARCHAR',
+                        type: 'varchar',
                         length: '15',
                         isNullable: true,
                     },
                     {
                         name: 'ip',
-                        type: 'VARCHAR',
+                        type: 'varchar',
                         isNullable: true
                     },
                     {
                         name: 'login_otp',
-                        type: 'TEXT',
+                        type: 'text',
                         isNullable: true,
                         comment: 'OTP -> is saved for encrypted text'
                     },
                     {
                         name: 'user_data',
-                        type: 'JSONB',
+                        type: 'jsonb',
                         isNullable: true,
                     },
                     {
                         name: 'created_date',
-                        type: 'DATETIME',
+                        type: 'timestamp',
                         default: 'CURRENT_TIMESTAMP',
                         isPrimary: false,
                         isNullable: true,
                     },
                     {
                         name: 'created_by',
-                        type: 'INT',
+                        type: 'integer',
                         isPrimary: false,
                         isNullable: true,
                     },
                     {
                         name: 'created_role',
-                        type: 'ENUM',
+                        type: 'enum',
                         enum: ['Admin', 'User'],
+                        enumName: 'user_role',
                         isNullable: true
                     },
                     {
                         name: 'modified_date',
-                        type: 'DATETIME',
+                        type: 'timestamp',
                         default: 'CURRENT_TIMESTAMP',
                         isPrimary: false,
                         isNullable: true,
                     },
                     {
                         name: 'modified_by',
-                        type: 'INT',
+                        type: 'integer',
                         isPrimary: false,
                         isNullable: true,
                     },
                     {
                         name: 'modified_role',
-                        type: 'ENUM',
-                        enum: ['Admin', 'User'],
+                        type: 'enum',
+                        enumName: 'user_role', // Reuse the existing enum type
                         isNullable: true
                     },
                 ],

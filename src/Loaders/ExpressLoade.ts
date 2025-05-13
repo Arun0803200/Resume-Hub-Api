@@ -3,7 +3,7 @@ import {Application} from 'express';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import {useExpressServer} from 'routing-controllers';
-import * as controllerIndex from '../api/common-index/Controller-index';
+import * as controllerIndex from '../../src/common/index.controller';
 
 export const expressLoader: MicroframeworkLoader =  (settings: MicroframeworkSettings) => {
     if (settings) {
