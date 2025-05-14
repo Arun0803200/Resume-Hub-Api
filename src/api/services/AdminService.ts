@@ -96,12 +96,12 @@ export class AdminService {
     relations: any = [],
     groupBy: any = [],
     sort: any = [],
-    count: boolean | number = false,
+    count: boolean = false,
     rawQuery: boolean = false
-  ): Promise<AdminModel[] | any> {
+  ): Promise<any> {
     const query: any = await getConnection()
       .getRepository(AdminModel)
-      .createQueryBuilder('AdminModel');
+      .createQueryBuilder();
     // Select
     if (select && select.length > 0) {
       query.select(select);
@@ -109,7 +109,23 @@ export class AdminService {
     // Join
     if (relations && relations.length > 0) {
       relations.forEach((joinTb: any) => {
-        query.leftJoinAndSelect(joinTb.tableName, joinTb.aliasName);
+        if (joinTb.op === 'left') {
+          query.leftJoin(joinTb.tableName, joinTb.aliasName);
+        } else if (joinTb.op === 'leftCond') {
+          query.leftJoin(joinTb.tableName, joinTb.aliasName, joinTb.cond);
+        } else if (joinTb.op === 'inner-select') {
+          query.innerJoinAndSelect(joinTb.tableName, joinTb.aliasName);
+        } else if (joinTb.op === 'left-select') {
+          query.leftJoinAndSelect(joinTb.tableName, joinTb.aliasName);
+        } else if (joinTb.op === 'left-select-cond') {
+          query.leftJoinAndSelect(
+            joinTb.tableName,
+            joinTb.aliasName,
+            joinTb.cond
+          );
+        } else {
+          query.innerJoin(joinTb.tableName, joinTb.aliasName);
+        }
       });
     }
     // Where
@@ -229,8 +245,8 @@ export class AdminService {
     }
     // Limit & Offset
     if (limit && limit > 0) {
-      query.take(limit);
-      query.skip(offset);
+      query.limit(limit);
+      query.offset(offset);
     }
     if (!count) {
       if (rawQuery) {
