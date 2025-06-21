@@ -1,11 +1,15 @@
-import { bootstrapMicroframework } from 'microframework';
-import { diLoader } from '../src/Loaders/DiLoader';
-import { typeormLoader } from '../src/Loaders/TypeormLoader';
-import { expressLoader } from '../src/Loaders/ExpressLoade';
-import { homeLoader } from '../src/Loaders/HomeLoader';
-
+import { bootstrapMicroframework } from "microframework";
+import { ioLoader } from "../Loaders/IoLoader";
+import { mongooseLoader } from "../Loaders/MongooseLoader";
+import { expressLoader } from "../Loaders/ExpressLoader";
+import { homeLoader } from "../Loaders/HomeLoader";
+// import { swaggerLoader } from "../Loaders/SwaggerLoader";
 bootstrapMicroframework({
-  loaders: [diLoader, typeormLoader, expressLoader, homeLoader],
-}).then(() => {
-  console.log('App running.............');
-});
+    loaders:[
+        ioLoader,
+        mongooseLoader,
+        expressLoader,
+        // swaggerLoader,
+        homeLoader,
+    ]
+}).then(()=>{console.log('app running......')}).catch((err) => {console.log(err)});
