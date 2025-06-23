@@ -1,3 +1,4 @@
-export * from "../api/controllers/FounderController"; 
-export * from "../api/controllers/TheaterController"; 
-export * from "../api/controllers/UserController"; 
+export * from "../api/Controllers/Admin/UserController"; 
+export * from "../api/Controllers/MediaController/MediaController"; 
+export * from "../api/Controllers/Student/UserController"; 
+export * from "../api/Controllers/SuperAdmin/ChatController"; 
