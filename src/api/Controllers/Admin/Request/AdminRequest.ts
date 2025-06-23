@@ -1,6 +1,7 @@
 import { IsNotEmpty } from 'class-validator';
+import { AdminGroup } from '../../../Interface/AdminUser.interface';
 
-export class UserRequest {
+export class AdminRequest {
   @IsNotEmpty({
     message: 'password should not be empty',
   })
@@ -30,4 +31,5 @@ export class UserRequest {
     message: 'mobileNumber should not be empty',
   })
   public mobileNumber: string;
+  public adminGroup: AdminGroup;
 }
